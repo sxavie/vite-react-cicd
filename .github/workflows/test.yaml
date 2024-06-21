@@ -1,1 +1,23 @@
 name: Test
+
+on:
+  push:
+    branch: [ main ]
+  pull_request:
+    branch: [ main ]
+
+env:
+  CI: "true"
+
+jobs:
+  test:
+    run-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 20
+      uses: actions/setup-node@v1
+      with:
+        node-version: 20
+    - run: npm install
+    - run: npm run test
